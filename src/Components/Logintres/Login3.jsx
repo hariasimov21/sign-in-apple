@@ -24,7 +24,10 @@ const Login3 = () => {
       if (authResponse && authResponse.email) {
         console.log("auth response: ", authResponse)
         console.log("auth response.email: ", authResponse.email)
-          consultaEmail(authResponse.email);
+        let request = {
+            "data": authResponse.email
+        }
+          consultaEmail(request);
         }
     }, [authResponse]);
     
