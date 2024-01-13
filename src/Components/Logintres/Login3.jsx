@@ -20,9 +20,14 @@ const Login3 = () => {
     }
   };
 
+  const consultaEmail = async (res) => {
+      const consulta = await axios.post("https://serverapple.onrender.com/consultaEmail", res)
+    console.log(consulta)
+  }
+
   useEffect(() => {
     if (authResponse && authResponse.email) {
-      console.log("Correo Electrónico: ", authResponse.email);
+consultaEmail(authResponse.email);
     }
   }, [authResponse]);
 
