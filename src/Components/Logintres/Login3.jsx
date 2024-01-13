@@ -22,6 +22,7 @@ const Login3 = () => {
  
   useEffect(() => {
       if (authResponse && authResponse.email) {
+        console.log("auth response: ", authResponse)
         console.log("auth response.email: ", authResponse.email)
           consultaEmail(authResponse.email);
         }
