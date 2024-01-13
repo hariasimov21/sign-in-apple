@@ -29,7 +29,7 @@ const Login3 = () => {
   return (
     <AppleLogin
       clientId="loginpudostarkencl"
-      redirectURI="https://loginapple.netlify.app"
+      redirectURI="https://loginappleprueba.com"
       responseMode="query"
       callback={appleResponse}
       usePopup={true}
