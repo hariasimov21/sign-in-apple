@@ -11,7 +11,7 @@ const Login3 = () => {
       try {
         const res = await axios.post("https://serverapple.onrender.com/auth", response);
         setAuthResponse(res.data);
-        console.log("res", res);
+        console.log("authresponse",authResponse)
       } catch (err) {
         console.error(err);
       }
