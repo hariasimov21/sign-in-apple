@@ -19,17 +19,18 @@ const Login3 = () => {
       console.log("error, apple response: ", response.error);
     }
   };
-
-  const consultaEmail = async (res) => {
-      const consulta = await axios.post("https://serverapple.onrender.com/consultaEmail", res)
-    console.log(consulta)
-  }
-
+ 
   useEffect(() => {
-    if (authResponse && authResponse.email) {
-consultaEmail(authResponse.email);
+      if (authResponse && authResponse.email) {
+        console.log("auth response.email: ", authResponse.email)
+          consultaEmail(authResponse.email);
+        }
+    }, [authResponse]);
+    
+    const consultaEmail = async (res) => {
+        const consulta = await axios.post("https://serverapple.onrender.com/consultaEmail", res)
+      console.log(consulta)
     }
-  }, [authResponse]);
 
   return (
     <AppleLogin
