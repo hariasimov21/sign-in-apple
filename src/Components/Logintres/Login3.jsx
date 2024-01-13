@@ -9,7 +9,7 @@ const Login3 = () => {
     console.log("llamando callback");
     if (!response.error) {
       try {
-        const res = await axios.post("http://localhost:3001/auth", response);
+        const res = await axios.post("https://localhost:3001/auth", response);
         setAuthResponse(res.data);
         console.log("res", res);
       } catch (err) {
