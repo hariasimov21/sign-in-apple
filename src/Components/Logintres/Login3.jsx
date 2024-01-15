@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 import AppleLogin from 'react-apple-login';
 import axios from 'axios';
 
+
 const Login3 = () => {
   const [authResponse, setAuthResponse] = useState(null);
+
+  const navigate = useNavigate();
 
   const appleResponse = async (response) => {
     console.log("llamando callback");
@@ -32,8 +36,23 @@ const Login3 = () => {
     }, [authResponse]);
     
     const consultaEmail = async (res) => {
+
+
+      try{
         const consulta = await axios.post("https://serverapple.onrender.com/consultaEmail", res)
-      console.log(consulta)
+        console.log(consulta.data)
+
+        if(consulta.status === 200){
+          navigate('/loginExitoso', {state: {email: res.data}});
+        }else {
+          navigate('/loginFallido');
+        }
+        
+      }catch(error){
+        console.error("error en la consulta: ", error);
+        navigate('/loginFallido');
+
+      }
     }
 
   return (
