@@ -41,6 +41,7 @@ const state = "origin:web";
     });
 
     document.addEventListener("AppleIDSignInOnSuccess", (event)=>{
+      console.log("evento: ", event)
       appleResponse(event)
       if (authResponse && authResponse.email) {
         console.log("auth response: ", authResponse)
@@ -56,7 +57,7 @@ const state = "origin:web";
       console.log("Error ", event);
     })
 
-    },[authResponse])
+    },[])
     
     const consultaEmail = async (res) => {
 
@@ -99,6 +100,7 @@ const state = "origin:web";
         data-color="black"
         data-border="true"
         data-type="sign-in"
+        data-mode="logo-only"
       ></div>
       {/* <AppleLogin
         clientId="loginpudostarkencl"
