@@ -57,7 +57,7 @@ const state = "origin:web";
       console.log("Error ", event);
     })
 
-    },[])
+    },[authResponse])
     
     const consultaEmail = async (res) => {
 
