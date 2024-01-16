@@ -40,26 +40,48 @@ const state = "origin:web";
       usePopup: true
     });
 
-    document.addEventListener("AppleIDSignInOnSuccess", (event)=>{
+    const handleAppleSignInSuccess = (event) => {
+      appleResponse(event.detail);
+    };
 
-      console.log("evento: ", event)
-      console.log("authresponse use effect", authResponse)
-      appleResponse(event.detail)
-      if (authResponse && authResponse.email) {
-        console.log("auth response: ", authResponse)
-        console.log("auth response.email: ", authResponse.email)
-        let request = {
-            "data": authResponse.email
-        }
-          consultaEmail(request);
-        }
-    });
-
-    document.addEventListener("AppleIDSignInOnFailure", (event) => {
+    const handleAppleSignInFailure = (event) => {
       console.log("Error ", event);
-    })
+    };
 
-    },[authResponse])
+    document.addEventListener("AppleIDSignInOnSuccess", handleAppleSignInSuccess);
+    document.addEventListener("AppleIDSignInOnFailure", handleAppleSignInFailure);
+    return () => {
+      document.removeEventListener("AppleIDSignInOnSuccess", handleAppleSignInSuccess);
+      document.removeEventListener("AppleIDSignInOnFailure", handleAppleSignInFailure);
+    };
+
+
+    // document.addEventListener("AppleIDSignInOnSuccess", (event)=>{
+
+    //   console.log("evento: ", event)
+    //   console.log("authresponse use effect", authResponse)
+    //   appleResponse(event.detail)
+    //   if (authResponse && authResponse.email) {
+    //     console.log("auth response: ", authResponse)
+    //     console.log("auth response.email: ", authResponse.email)
+    //     let request = {
+    //         "data": authResponse.email
+    //     }
+    //       consultaEmail(request);
+    //     }
+    // });
+
+    // document.addEventListener("AppleIDSignInOnFailure", (event) => {
+    //   console.log("Error ", event);
+    // })
+
+    },[]);
+
+    useEffect(() => {
+      if (authResponse && authResponse.email) {
+      consultaEmail({ data: authResponse.email });
+      }
+      }, [authResponse]);
     
     const consultaEmail = async (res) => {
 
