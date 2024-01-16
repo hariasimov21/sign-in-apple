@@ -42,7 +42,7 @@ const state = "origin:web";
 
     document.addEventListener("AppleIDSignInOnSuccess", (event)=>{
       console.log("evento: ", event)
-      appleResponse(event.detail.authorization)
+      appleResponse(event.detail)
       if (authResponse && authResponse.email) {
         console.log("auth response: ", authResponse)
         console.log("auth response.email: ", authResponse.email)
