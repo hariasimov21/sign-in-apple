@@ -1,0 +1,34 @@
+body {
+    background: linear-gradient(to bottom right, black, white);
+    background-repeat: no-repeat;
+    background-size: cover;  
+    margin: 0;
+    height: 100vh;
+}
+
+img {
+    max-width: 200px;
+    margin: 10px 0;
+}
+
+h1 {
+    color: #fff;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    
+}
+
+.botonapple{
+    background-color: #fff;
+}
+
+.signin-button > div > div > svg {
+    height: 50px;
+    width: 100%;
+  }

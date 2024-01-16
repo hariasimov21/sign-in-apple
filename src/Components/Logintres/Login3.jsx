@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import AppleLogin from 'react-apple-login';
+import icon from '../Assets/icon.PNG'
+import './Login3.css'
 import axios from 'axios';
+import { GoogleOAuthProvider, GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 
 
 const Login3 = () => {
   const [authResponse, setAuthResponse] = useState(null);
+  const clientId = "loginpudostarkencl";
+const scope = "name email";
+const redirectURI = "https://loginappleprueba.com";
+const state = "origin:web";
 
   const navigate = useNavigate();
 
@@ -25,6 +32,15 @@ const Login3 = () => {
   };
  
   useEffect(() => {
+    window.AppleID.auth.init({
+      clientId,
+      scope,
+      redirectURI,
+      state,
+      usePopup: true
+    });
+
+    document.addEventListener("AppleIDSignInOnSuccess", (event)=>{
       if (authResponse && authResponse.email) {
         console.log("auth response: ", authResponse)
         console.log("auth response.email: ", authResponse.email)
@@ -33,7 +49,13 @@ const Login3 = () => {
         }
           consultaEmail(request);
         }
-    }, [authResponse]);
+    });
+
+    document.addEventListener("AppleIDSignInOnFailure", (event) => {
+      console.log("Error ", event);
+    })
+
+    },[authResponse])
     
     const consultaEmail = async (res) => {
 
@@ -55,14 +77,66 @@ const Login3 = () => {
       }
     }
 
+    const login = useGoogleLogin({
+      onSuccess: tokenResponse => console.log(tokenResponse),
+    });
+
+    const responseMessage = (response) => {
+      console.log(response);
+  };
+  const errorMessage = (error) => {
+      console.log(error);
+  };
+
   return (
-    <AppleLogin
-      clientId="loginpudostarkencl"
-      redirectURI="https://loginappleprueba.com"
-      responseMode="query"
-      callback={appleResponse}
-      usePopup={true}
-    />
+    <div className="container">
+      <h1>Sign in</h1>
+      <img src={icon} alt="jimmy" />
+      <div
+        id="appleid-signin"
+        className="signin-button"
+        data-color="black"
+        data-border="true"
+        data-type="sign-in"
+      ></div>
+      {/* <AppleLogin
+        clientId="loginpudostarkencl"
+        redirectURI="https://loginappleprueba.com"
+        responseMode="query"
+        callback={appleResponse}
+        usePopup={true}
+        designProp={
+         { height: 36,
+          width: 200,
+          color: 'white'
+           }
+           
+        }
+      /> */}
+
+      <div className="login-google">
+        <div>
+          <hr />
+          <hr />
+          <hr />
+          <hr />
+          <hr />
+          <hr />
+          <hr />
+          <hr />
+          <hr />
+          <hr />
+          <hr />
+          <hr />
+          <hr />
+        </div>
+
+    {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
+    <button onClick={() => login()}>Sign in with Google 🚀</button>;
+      </div>
+
+
+    </div>
   );
 };
 
