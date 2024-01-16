@@ -4,7 +4,7 @@ import AppleLogin from 'react-apple-login';
 import icon from '../Assets/icon.PNG'
 import './Login3.css'
 import axios from 'axios';
-import { GoogleOAuthProvider, GoogleLogin, useGoogleLogin } from '@react-oauth/google';
+
 
 
 const Login3 = () => {
@@ -77,16 +77,16 @@ const state = "origin:web";
       }
     }
 
-    const login = useGoogleLogin({
-      onSuccess: tokenResponse => console.log(tokenResponse),
-    });
+  //   const login = useGoogleLogin({
+  //     onSuccess: tokenResponse => console.log(tokenResponse),
+  //   });
 
-    const responseMessage = (response) => {
-      console.log(response);
-  };
-  const errorMessage = (error) => {
-      console.log(error);
-  };
+  //   const responseMessage = (response) => {
+  //     console.log(response);
+  // };
+  // const errorMessage = (error) => {
+  //     console.log(error);
+  // };
 
   return (
     <div className="container">
@@ -132,7 +132,7 @@ const state = "origin:web";
         </div>
 
     {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
-    <button onClick={() => login()}>Sign in with Google 🚀</button>;
+    {/* <button onClick={() => login()}>Sign in with Google 🚀</button>; */}
       </div>
 
 
