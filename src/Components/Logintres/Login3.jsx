@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
-import AppleLogin from 'react-apple-login';
+//import AppleLogin from 'react-apple-login';
 import icon from '../Assets/icon.PNG'
 import './Login3.css'
 import axios from 'axios';
-import {useGoogleLogin} from '@react-oauth/google';
+//import {useGoogleLogin} from '@react-oauth/google';
 
 
 
