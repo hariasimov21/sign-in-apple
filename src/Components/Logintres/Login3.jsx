@@ -4,12 +4,13 @@ import AppleLogin from 'react-apple-login';
 import icon from '../Assets/icon.PNG'
 import './Login3.css'
 import axios from 'axios';
+import {useGoogleLogin} from '@react-oauth/google';
 
 
 
 const Login3 = () => {
   const [authResponse, setAuthResponse] = useState(null);
-  const clientId = "loginpudostarkencl";
+  const clientId = "com.pudo.prueba";
 const scope = "name email";
 const redirectURI = "https://loginappleprueba.com";
 const state = "origin:web";
@@ -55,26 +56,6 @@ const state = "origin:web";
       document.removeEventListener("AppleIDSignInOnFailure", handleAppleSignInFailure);
     };
 
-
-    // document.addEventListener("AppleIDSignInOnSuccess", (event)=>{
-
-    //   console.log("evento: ", event)
-    //   console.log("authresponse use effect", authResponse)
-    //   appleResponse(event.detail)
-    //   if (authResponse && authResponse.email) {
-    //     console.log("auth response: ", authResponse)
-    //     console.log("auth response.email: ", authResponse.email)
-    //     let request = {
-    //         "data": authResponse.email
-    //     }
-    //       consultaEmail(request);
-    //     }
-    // });
-
-    // document.addEventListener("AppleIDSignInOnFailure", (event) => {
-    //   console.log("Error ", event);
-    // })
-
     },[]);
 
     useEffect(() => {
@@ -103,16 +84,22 @@ const state = "origin:web";
       }
     }
 
-  //   const login = useGoogleLogin({
-  //     onSuccess: tokenResponse => console.log(tokenResponse),
-  //   });
+    // const login =   useGoogleLogin({
+    //   onSuccess: async tokenResponse => {
+    //     console.log(tokenResponse)
+    //     const res = await axios.post("https://serverapple.onrender.com/auth", tokenResponse.access_token);
+    //     console.log(res)
+        
+        
+    //   },
+    // });
 
-  //   const responseMessage = (response) => {
-  //     console.log(response);
-  // };
-  // const errorMessage = (error) => {
-  //     console.log(error);
-  // };
+    const responseMessage = (response) => {
+      console.log(response);
+  };
+  const errorMessage = (error) => {
+      console.log(error);
+  };
 
   return (
     <div className="container">
@@ -142,24 +129,8 @@ const state = "origin:web";
       /> */}
 
       <div className="login-google">
-        <div>
-          <hr />
-          <hr />
-          <hr />
-          <hr />
-          <hr />
-          <hr />
-          <hr />
-          <hr />
-          <hr />
-          <hr />
-          <hr />
-          <hr />
-          <hr />
-        </div>
-
-    {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
-    {/* <button onClick={() => login()}>Sign in with Google 🚀</button>; */}
+     {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />  */}
+    {/* <button onClick={() => login()}>Sign in with Google 🚀</button> */}
       </div>
 
 
